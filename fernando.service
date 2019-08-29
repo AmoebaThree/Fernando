@@ -1,0 +1,12 @@
+[Unit]
+Description=Fernando - the driver
+
+[Service]
+ExecStart=/usr/bin/python /home/pi/code/Fernando/fernando.py
+Environment=PYTHONUNBUFFERED=1
+Restart=on-failure
+Type=notify
+KillSignal=SIGINT
+
+[Install]
+WantedBy=default.target
