@@ -1,5 +1,5 @@
 if __name__ == '__main__':
-    import time, systemd.daemon, initio, redis
+    import systemd.daemon, initio, redis
 
     print('Startup')
     initio.init();
