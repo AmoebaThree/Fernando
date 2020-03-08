@@ -2,7 +2,7 @@
 Description=Fernando - the driver
 
 [Service]
-ExecStart=/usr/bin/python /home/pi/code/Fernando/fernando.py
+ExecStart=/usr/bin/python /home/pi/zoidberg-deploy/fernando/fernando.py
 Environment=PYTHONUNBUFFERED=1
 Restart=on-failure
 Type=notify
