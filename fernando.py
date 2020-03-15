@@ -1,9 +1,12 @@
 if __name__ == '__main__':
-    import systemd.daemon, initio, redis
+    import systemd.daemon
+    import initio
+    import redis
 
     print('Startup')
     initio.init(Motors=True)
-    r = redis.Redis(host='192.168.0.1', port=6379, db=0)
+    r = redis.Redis(host='192.168.0.1', port=6379,
+                    db=0, decode_responses=True)
     p = r.pubsub(ignore_subscribe_messages=True)
     p.subscribe('fernando')
     print('Startup complete')
