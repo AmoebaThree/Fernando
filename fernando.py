@@ -19,8 +19,9 @@ def execute():
     p = r.pubsub(ignore_subscribe_messages=True)
     p.subscribe('fernando')
 
-    print('Startup complete')
+    r.publish('services', 'fernando.on')
     systemd.daemon.notify('READY=1')
+    print('Startup complete')
 
     try:
         for message in p.listen():
@@ -37,8 +38,11 @@ def execute():
                 initio.stop()
     except:
         p.close()
+
         initio.stop()
         initio.cleanup()
+
+        r.publish('services', 'fernando.off')
         print('Goodbye')
 
 
