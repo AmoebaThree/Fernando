@@ -36,6 +36,7 @@ def execute():
                 initio.spinRight(100)
             elif cmd == cmd_stop:
                 initio.stop()
+            r.publish('fernando.status', cmd)
     except:
         p.close()
 
