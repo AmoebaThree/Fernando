@@ -6,7 +6,7 @@ The Driver
 
 Format: \<channel> "message"
 
-**Inputs**
+### Inputs
 
 * \<fernando> "f"
   * Set motors to forwards
@@ -19,7 +19,7 @@ Format: \<channel> "message"
 * \<fernando> "s"
   * Set motors to all stop
 
-**Outputs**
+### Outputs
 
 * \<fernando.status> "f"
   * The motors have been set to forwards
