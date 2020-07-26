@@ -24,6 +24,9 @@ def execute():
     print('Startup complete')
 
     try:
+        initio.stop()
+        r.publish('fernando.status', cmd_stop)
+
         for message in p.listen():
             cmd = message['data']
             if cmd == cmd_forwards:
