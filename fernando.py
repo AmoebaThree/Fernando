@@ -13,6 +13,7 @@ def execute():
     cmd_left = 'l'
     cmd_right = 'r'
     cmd_stop = 's'
+    cmd_query = '?'
 
     r = redis.Redis(host='192.168.0.1', port=6379,
                     db=0, decode_responses=True)
@@ -27,8 +28,11 @@ def execute():
         initio.stop()
         r.publish('fernando.status', cmd_stop)
 
+        last_cmd = cmd_stop
+
         for message in p.listen():
             cmd = message['data']
+
             if cmd == cmd_forwards:
                 initio.forward(100)
             elif cmd == cmd_backwards:
@@ -39,7 +43,14 @@ def execute():
                 initio.spinRight(100)
             elif cmd == cmd_stop:
                 initio.stop()
-            r.publish('fernando.status', cmd)
+            elif cmd == cmd_query:
+                # Don't need to do anything in this case
+                pass
+
+            if cmd != cmd_query:
+                last_cmd = cmd
+
+            r.publish('fernando.status', last_cmd)
     except:
         p.close()
 
